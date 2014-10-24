@@ -1,3 +1,12 @@
-<h1>Hi there! <%= @post.title %></h1>
+<p>
+  <%= render @post.categories %>
+</p>
+
+<%= render 'shared/content_title', title: @post.title %>
+
+<p>
+  <%= @post.description %>
+</p>
+</hr>
 
 <%= link_to 'Back', posts_path %>
