@@ -1,16 +1,35 @@
-<p>
-  <%= render @post.categories %>
-</p>
+<div class="row">
+  <div class="span8">
+    <%= render @post.categories %>
+    <h4><%= render 'shared/content_title', title: @post.title %></h4>
+    <p>
+      <%= @post.description %>
+      <hr/>
+    </p>
+    <p>
+    <%= form_for [@post, @comment] do |f| %>
+      <%= render 'shared/errors', object: @comment %>
+      <%= f.label :body, "Leave a comment:" %>
+      <%= f.text_area :body, rows: 5 %>
+    </p>
+      <%= f.submit "Submit", class: "btn btn-success" %>
+    <% end %>
+    </p>
+    <p><%= link_to 'Edit this post', edit_post_path(@post) %></p>
+    <p><%= link_to 'Back', posts_path %></p>
+  </div>
+</div>
 
-<%= render 'shared/content_title', title: @post.title %>
+<h5 text-weight="bold">Comments:</h5>
 
-<p>
-  <%= @post.description %>
-</p>
-
-<p>
-  <%= link_to 'Edit this post', edit_post_path %>
-</p>
-</hr>
-
-<%= link_to 'Back', posts_path %>
+<% @post.comments.each do |cmt| %>
+  <div class="well">
+    <ul>
+      "<%= cmt.body %>"
+      <p>
+      <small><span class="quiet">comment by</span> <%= cmt.creator.present? ? cmt.creator.username : "Anonymous" %></small>
+      <small>at <%= cmt.created_at %></small>
+      </p> 
+    </ul>
+  </div>
+<% end %>
