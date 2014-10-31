@@ -15,7 +15,9 @@
       <%= f.submit "Submit", class: "btn btn-success" %>
     <% end %>
     </p>
-    <p><%= link_to 'Edit this post', edit_post_path(@post) %></p>
+    <% if current_user == @post.creator %>
+      <p><%= link_to 'Edit this post', edit_post_path(@post) %></p>
+    <% end %>
     <p><%= link_to 'Back', posts_path %></p>
   </div>
 </div>
@@ -28,7 +30,7 @@
       "<%= cmt.body %>"
       <p>
       <small><span class="quiet">comment by</span> <%= cmt.creator.present? ? cmt.creator.username : "Anonymous" %></small>
-      <small>at <%= cmt.created_at %></small>
+      <small>at <%= datetime(cmt.created_at) %></small>
       </p> 
     </ul>
   </div>
