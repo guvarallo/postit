@@ -1,0 +1,21 @@
+<% object.comments.each do |cmt| %>
+  <div class="well">
+    <ul>
+      <% if object == @user %>
+        "<%= cmt.body %>" on <%= link_to cmt.post.title, post_path(cmt.post) %>
+      <% else %>
+        "<%= cmt.body %>"
+      <% end %>
+      <p>
+      <small><span class="quiet">comment by</span>
+        <% if cmt.creator.present? %>
+          <%= link_to cmt.creator.username, user_path(cmt.creator) %>
+        <% else %>
+          <%= "Anonymous" %>
+        <% end %>
+        </small>
+      <small>at <%= datetime(cmt.created_at) %></small>
+      </p> 
+    </ul>
+  </div>
+<% end %>

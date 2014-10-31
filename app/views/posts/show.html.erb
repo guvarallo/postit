@@ -24,14 +24,4 @@
 
 <h5 text-weight="bold">Comments:</h5>
 
-<% @post.comments.each do |cmt| %>
-  <div class="well">
-    <ul>
-      "<%= cmt.body %>"
-      <p>
-      <small><span class="quiet">comment by</span> <%= cmt.creator.present? ? cmt.creator.username : "Anonymous" %></small>
-      <small>at <%= datetime(cmt.created_at) %></small>
-      </p> 
-    </ul>
-  </div>
-<% end %>
+<%= render 'comments/comment', object: @post %>
