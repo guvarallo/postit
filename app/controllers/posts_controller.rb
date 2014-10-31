@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update]
-  before_action :require_user, except: [:index, :show]
-  before_action :require_post_creator, only: [:edit, :update]
+  before_action :set_post,             only:   [:show, :edit, :update]
+  before_action :require_user,         except: [:index, :show]
+  before_action :require_post_creator, only:   [:edit, :update]
 
   def index
 		@posts = Post.all
@@ -52,7 +52,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     if current_user != @post.creator
-      flash[:notice] = "Must be the post creator for this action."
+      flash[:error] = "Must be the post creator for this action."
       redirect_to root_path
     end
   end
