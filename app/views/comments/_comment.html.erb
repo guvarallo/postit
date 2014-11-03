@@ -1,35 +1,33 @@
 <% object.comments.each do |cmt| %>
-  <% if !cmt.id.nil? %>
-    <div class="row">
-      <div class="span0 well text-center">
-        <% if logged_in? %>
-          <%= link_to vote_post_comment_path(object, cmt, vote: true), method: 'post' do %>
-            <i class="icon-arrow-up"></i></br>
-          <% end %>
+  <div class="row">
+    <div class="span0 well text-center">
+      <% if logged_in? %>
+        <%= link_to vote_post_comment_path(object, cmt, vote: true), method: 'post' do %>
+          <i class="icon-arrow-up"></i></br>
         <% end %>
-        <%= cmt.vote_total %> votes
-        </br>
-        <% if logged_in? %>
-          <%= link_to vote_post_comment_path(object, cmt, vote: false), method: 'post' do %>
-            <i class="icon-arrow-down"></i>
-          <% end %>
+      <% end %>
+      <%= cmt.vote_total %> votes
+      </br>
+      <% if logged_in? %>
+        <%= link_to vote_post_comment_path(object, cmt, vote: false), method: 'post' do %>
+          <i class="icon-arrow-down"></i>
         <% end %>
-      </div>
-      <div class="span8 well">
-        <ul>
-          <% if object == @user %>
-            "<%= cmt.body %>" on <%= link_to cmt.post.title, post_path(cmt.post) %>
-          <% else %>
-            "<%= cmt.body %>"
-          <% end %>
-          <p>
-          <small><span class="quiet">comment by</span>
-            <%= link_to cmt.creator.username, user_path(cmt.creator) %>
-          </small>
-          <small>at <%= datetime(cmt.created_at) %></small>
-          </p> 
-        </ul>
-      </div>
+      <% end %>
     </div>
-  <% end %>
+    <div class="span8 well">
+      <ul>
+        <% if object == @user %>
+          "<%= cmt.body %>" on <%= link_to cmt.post.title, post_path(cmt.post) %>
+        <% else %>
+          "<%= cmt.body %>"
+        <% end %>
+        <p>
+        <small><span class="quiet">comment by</span>
+          <%= link_to cmt.creator.username, user_path(cmt.creator) %>
+        </small>
+        <small>at <%= datetime(cmt.created_at) %></small>
+        </p> 
+      </ul>
+    </div>
+  </div>
 <% end %>

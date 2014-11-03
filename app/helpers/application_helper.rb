@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def datetime(dt)
-    dt.strftime("%d %b. %Y at %H:%M") 
+    dt.strftime("%d %b. %Y at %H:%M %Z")
   end
 
 end
