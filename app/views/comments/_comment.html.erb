@@ -2,14 +2,14 @@
   <div class="row">
     <div class="span0 well text-center">
       <% if logged_in? %>
-        <%= link_to vote_post_comment_path(object, cmt, vote: true), method: 'post' do %>
+        <%= link_to vote_post_comment_path(object, cmt, vote: true), method: 'post', remote: true do %>
           <i class="icon-arrow-up"></i></br>
         <% end %>
       <% end %>
-      <%= cmt.vote_total %> votes
+      <span id="comment_<%= cmt.id %>_votes"><%= cmt.vote_total %> votes</span>
       </br>
       <% if logged_in? %>
-        <%= link_to vote_post_comment_path(object, cmt, vote: false), method: 'post' do %>
+        <%= link_to vote_post_comment_path(object, cmt, vote: false), method: 'post', remote: true do %>
           <i class="icon-arrow-down"></i>
         <% end %>
       <% end %>
