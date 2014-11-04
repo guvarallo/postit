@@ -5,7 +5,7 @@
         <i class="icon-arrow-up"></i></br>
       <% end %>
     <% end %>
-    <span id="post_<%=post.id%>_votes"><%= post.vote_total %> votes</span>
+    <span id="post_<%=post.slug%>_votes"><%= post.vote_total %> votes</span>
     </br>
     <%= link_to vote_post_path(post, vote: false), method: 'post', remote: true do %>
       <% if logged_in? %>
@@ -18,7 +18,7 @@
     <h4><%= link_to post.title, fix_url(post.url) %></h4>
     <p><%= post.description %></p>
     <p>
-      <span class="quiet">posted by</span> <%= post.creator.username %>
+      <span class="quiet">posted by</span> <%= link_to post.creator.username, user_path(post.creator) %>
       <small>on <%= datetime(post.created_at) %></small>
     </p>
     <small>
