@@ -66,10 +66,7 @@ class PostsController < ApplicationController
   
   def require_post_creator
     @post = Post.find(params[:id])
-
-    if current_user != @post.creator
-      flash[:error] = "Must be the post creator for this action."
-      redirect_to root_path
-    end
+    access_denied unless current_user == @post.creator or current_user.admin?
   end
+
 end

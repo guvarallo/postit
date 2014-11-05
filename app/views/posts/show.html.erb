@@ -17,7 +17,7 @@
       <% end %>
     <% end %>
     </p>
-    <% if current_user == @post.creator %>
+    <% if current_user == @post.creator or current_user.admin? %>
       <p><%= link_to 'Edit this post', edit_post_path(@post) %></p>
     <% end %>
     <p><%= link_to 'Back', posts_path %></p>
