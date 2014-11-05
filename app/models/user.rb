@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  include Sluggable
+  include Slugreate
 
 	has_many :posts
 	has_many :comments
@@ -10,6 +10,6 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
   validates :password, presence: true, on: :create, length: { minimum: 3 }
 
-  sluggable_column :username
+  slugable_column :username
   
 end

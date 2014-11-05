@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
   include Voteable
-  include Sluggable
+  include Slugreate
 
 	belongs_to  :creator, foreign_key: 'user_id', class_name: 'User'
 	has_many    :comments
@@ -11,6 +11,6 @@ class Post < ActiveRecord::Base
   validates   :url, presence: true, uniqueness: true
   validates   :description, presence: true
 
-  sluggable_column :title
+  slugable_column :title
 
 end

@@ -1,11 +1,11 @@
 class Category < ActiveRecord::Base
-  include Sluggable
+  include Slugreate
 
 	has_many :post_categories
 	has_many :posts, through: :post_categories
 
   validates :name, presence: true
 
-  sluggable_column :name
+  slugable_column :name
   
 end
