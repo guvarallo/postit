@@ -5,7 +5,11 @@ module ApplicationHelper
   end
 
   def datetime(dt)
-    dt.strftime("%d %b. %Y at %H:%M %Z")
+    if dt > Time.now.beginning_of_day
+      "#{time_ago_in_words(dt)} ago"
+    else
+      dt.strftime("%d %b. %Y at %H:%M %Z")
+    end
   end
 
 end
